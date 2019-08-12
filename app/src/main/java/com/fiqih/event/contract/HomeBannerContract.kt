@@ -1,17 +1,17 @@
 package com.fiqih.event.contract
 
-import com.fiqih.event.model.Profile
+import com.fiqih.event.model.Banner
 
-interface MainContract{
+interface HomeBannerContract{
 
     interface View{
         fun showLoading()
-        fun listProfile(profile: List<Profile>)
+        fun listProfile(banner: List<Banner>)
         fun hideLoading()
     }
 
     interface Presenter{
-        fun getProfile()
+        fun getBanner(auth:String)
         fun destroyFetch()
     }
 }

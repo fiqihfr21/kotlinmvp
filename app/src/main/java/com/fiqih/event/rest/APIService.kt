@@ -7,6 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object APIService{
 
     val BASE_URL = "https://jsonplaceholder.typicode.com/"
+    val BASE_URL_STORAGE = "http://mediataklim.tech/"
 
     fun create() : APIRepository{
         val service  = Retrofit.Builder()
