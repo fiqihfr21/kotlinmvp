@@ -1,15 +1,15 @@
 package com.fiqih.event.contract
 
-import com.fiqih.event.model.Banner
+import com.fiqih.event.model.ScreenItem
 
 interface IntroScreenContract{
 
     interface View{
-        fun listIntro(banner: List<Banner>)
+        fun listIntro(screenItem: ScreenItem)
     }
 
     interface Presenter{
-        fun getBanner(auth:String)
+        fun getIntroScreen()
         fun destroyFetch()
     }
 }

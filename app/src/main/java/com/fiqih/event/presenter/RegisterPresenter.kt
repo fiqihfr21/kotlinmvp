@@ -1,21 +1,19 @@
 package com.fiqih.event.presenter
 
-import android.util.Log
-import com.fiqih.event.contract.LoginContract
+import com.fiqih.event.contract.RegisterContract
 import com.fiqih.event.model.UserID
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subscribers.ResourceSubscriber
 
-
-class LoginPresenter(private val view: LoginContract.View,
-                     private val apiRepositoryImplement: APIRepositoryImplement):LoginContract.Presenter{
+class RegisterPresenter(private val view: RegisterContract.View,
+                     private val apiRepositoryImplement: APIRepositoryImplement): RegisterContract.Presenter{
 
     private val compositeDisposable = CompositeDisposable()
 
-    override fun getUser(email:String, password:String) {
-        compositeDisposable.add(apiRepositoryImplement.login(email,password).observeOn(AndroidSchedulers.mainThread()).subscribeOn(
+    override fun getUser(name:String, phone:String, email:String, password:String) {
+        compositeDisposable.add(apiRepositoryImplement.register(name, phone, email,password).observeOn(AndroidSchedulers.mainThread()).subscribeOn(
             Schedulers.io()).subscribeWith(object : ResourceSubscriber<UserID>(){
             override fun onComplete() {
                 view.hideLoading()

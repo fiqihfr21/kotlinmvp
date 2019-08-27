@@ -2,7 +2,7 @@ package com.fiqih.event.contract
 
 import com.fiqih.event.model.UserID
 
-interface LoginContract{
+interface RegisterContract{
 
     interface View{
         fun showLoading()
@@ -11,7 +11,7 @@ interface LoginContract{
     }
 
     interface Presenter{
-        fun getUser(email:String, password:String)
+        fun getUser(name:String, phone:String, email:String, password:String)
         fun destroyFetch()
     }
 }

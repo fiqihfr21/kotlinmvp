@@ -1,14 +1,15 @@
 package com.fiqih.event.model
 
 data class LogRegAPIResponse(
-    val error: Boolean,
-    val error_msg:String,
+    val error: String,
     val user: UserID
 )
 
 data class UserID(
     val id:Int,
-    val token: String
+    val token: String,
+    val status_code: Int,
+    val error: String
 )
 
 data class User(

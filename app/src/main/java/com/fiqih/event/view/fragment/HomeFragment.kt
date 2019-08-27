@@ -44,13 +44,13 @@ class HomeFragment : Fragment(), HomeBannerContract.View {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        doRequest()
+        //doRequest()
     }
 
     private lateinit var presenter : HomeBannerPresenter
 
     private fun doRequest(){
-        presenter = HomeBannerPresenter(this, APIRepositoryImplement(APIService.create()))
+        presenter = HomeBannerPresenter(this, APIRepositoryImplement(APIService.ApiUser()))
         presenter.getBanner("Bearer " + SessionManager.getInstance(this!!.context!!).user.token)
     }
 

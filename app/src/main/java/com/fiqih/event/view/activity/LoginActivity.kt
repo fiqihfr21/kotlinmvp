@@ -9,6 +9,7 @@ import android.widget.Toast
 import com.fiqih.event.R
 import com.fiqih.event.contract.LoginContract
 import com.fiqih.event.model.LogRegAPIResponse
+import com.fiqih.event.model.UserID
 import com.fiqih.event.presenter.APIRepositoryImplement
 import com.fiqih.event.presenter.LoginPresenter
 import com.fiqih.event.rest.APIService
@@ -28,6 +29,16 @@ class LoginActivity : AppCompatActivity(), LoginContract.View{
             if (validateLogin(user, pass)){
                 doRequest()
             }
+//            val intent = Intent(applicationContext, MainActivity::class.java)
+//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+//            startActivity(intent)
+//            finish()
+        }
+
+        btnRegist.setOnClickListener {
+            val intent = Intent(applicationContext, RegisterActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
     }
 
@@ -61,7 +72,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View{
     }
 
     private fun doRequest(){
-        presenter = LoginPresenter(this, APIRepositoryImplement(APIService.create()))
+        presenter = LoginPresenter(this, APIRepositoryImplement(APIService.ApiUser()))
         presenter.getUser(etemail.text.toString(), etpassword.text.toString())
     }
 
@@ -69,17 +80,16 @@ class LoginActivity : AppCompatActivity(), LoginContract.View{
 
     }
 
-    override fun logRegResponse(logRegResponse: LogRegAPIResponse) {
-
-        if(logRegResponse.error){
-            Toast.makeText(this@LoginActivity, logRegResponse.error_msg, Toast.LENGTH_SHORT).show()
+    override fun logRegResponse(logRegResponse: UserID) {
+        Log.i("status_code: ", logRegResponse.status_code.toString())
+        if(logRegResponse.status_code.toString() == "400"){
+            Toast.makeText(this@LoginActivity, logRegResponse.error, Toast.LENGTH_SHORT).show()
         }else{
-            SessionManager.getInstance(applicationContext).saveUser(logRegResponse.user)
+            SessionManager.getInstance(applicationContext).saveUser(logRegResponse)
             val intent = Intent(applicationContext, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()
-            Log.i("data user", ": $logRegResponse")
         }
     }
 

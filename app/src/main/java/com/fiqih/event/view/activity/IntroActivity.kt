@@ -6,65 +6,61 @@ import android.os.Bundle
 import android.support.design.widget.TabLayout
 import android.support.v4.view.ViewPager
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.fiqih.event.R
 import android.view.View
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.Button
-import android.widget.Toast
 import com.fiqih.event.contract.HomeBannerContract
+import com.fiqih.event.contract.IntroScreenContract
 import com.fiqih.event.model.Banner
 import com.fiqih.event.model.ScreenItem
 import com.fiqih.event.presenter.APIRepositoryImplement
 import com.fiqih.event.presenter.HomeBannerPresenter
+import com.fiqih.event.presenter.IntroScreenPresenter
 import com.fiqih.event.rest.APIService
 import com.fiqih.event.util.SessionManager
-import com.fiqih.event.view.adapter.HomeBannerAdapter
 import com.fiqih.event.view.adapter.IntroScreenAdapter
-import kotlinx.android.synthetic.main.fragment_home.*
-import java.util.ArrayList
+import kotlinx.android.synthetic.main.activity_intro.*
+import retrofit2.Response
 
-class IntroActivity : AppCompatActivity(), HomeBannerContract.View {
+class IntroActivity : AppCompatActivity(), IntroScreenContract.View {
 
     private var viewPagerIntro: ViewPager? = null
     internal lateinit var introViewPagerAdapter: IntroScreenAdapter
     internal lateinit var tabLayoutIndicator: TabLayout
     internal lateinit var btnNext: Button
+    internal lateinit var btnSkip: Button
     internal var position = 0
     internal lateinit var btnGetStarted: Button
     internal lateinit var btnAnimation: Animation
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        //cek udah pernah buka aplikasinya atau belum
-//        if (restorePrefData()) {
-//            val intentMyActivity = Intent(applicationContext, MainActivity::class.java)
-//            startActivity(intentMyActivity)
-//            finish()
-//        }
-        doRequest()
-
         setContentView(R.layout.activity_intro)
 
+        //cek udah pernah buka aplikasinya atau belum
+        if (SessionManager.getInstance(this).isFirstTimeLaunch) {
+            val intentMyActivity = Intent(this, LoginActivity::class.java)
+            startActivity(intentMyActivity)
+            finish()
+        }
+        doRequest()
     }
 
-    private lateinit var presenter : HomeBannerPresenter
+    //            val intentMyActivity =
+    private lateinit var presenter : IntroScreenPresenter
 
     private fun doRequest(){
-        presenter = HomeBannerPresenter(this, APIRepositoryImplement(APIService.create()))
-        presenter.getBanner("Bearer " + SessionManager.getInstance(this).user.token)
+        presenter = IntroScreenPresenter(this, APIRepositoryImplement(APIService.ApiGeneral()))
+        presenter.getIntroScreen()
     }
 
-    override fun showLoading() {
+    override fun listIntro(screenItem: ScreenItem) {
 
-    }
-
-    override fun listProfile(banner: List<Banner>) {
-        Log.i("data banner", ": $banner")
         btnNext = findViewById(R.id.btn_next)
+        btnSkip = findViewById(R.id.btnskip)
         tabLayoutIndicator = findViewById(R.id.tab_indicator_intro)
         btnGetStarted = findViewById(R.id.btn_get_started)
         btnAnimation = AnimationUtils.loadAnimation(applicationContext, R.anim.button_animation)
@@ -95,7 +91,7 @@ class IntroActivity : AppCompatActivity(), HomeBannerContract.View {
 
         // setup viewpager
         viewPagerIntro = findViewById(R.id.viewPagerIntroSlider)
-        introViewPagerAdapter = IntroScreenAdapter(this, banner)
+        introViewPagerAdapter = IntroScreenAdapter(this, screenItem.itemScreen)
         viewPagerIntro!!.adapter = introViewPagerAdapter
 
         // setup tab layout with view pager
@@ -104,22 +100,29 @@ class IntroActivity : AppCompatActivity(), HomeBannerContract.View {
         // btn next set on click listener
         btnNext.setOnClickListener {
             position = viewPagerIntro!!.currentItem
-            if (position < banner.size) {
+            if (position < screenItem.itemScreen.size) {
                 position++
                 viewPagerIntro!!.currentItem = position
             }
 
-            if (position == banner.size - 1) {
+            if (position == screenItem.itemScreen.size - 1) {
                 loadLastScreen()
             }
+        }
+
+        btnskip.setOnClickListener {
+            val intentMyActivity = Intent(this, LoginActivity::class.java)
+            startActivity(intentMyActivity)
+            SessionManager.getInstance(this).setFirstTimeLaunch(true)
+            finish()
         }
 
         // tab layout add change listener
         tabLayoutIndicator.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
-                if (tab.position == banner.size - 1) {
+                if (tab.position == screenItem.itemScreen.size - 1) {
                     loadLastScreen()
-                } else if (tab.position != banner.size - 1) {
+                } else if (tab.position != screenItem.itemScreen.size - 1) {
                     reloadScreen()
                 }
             }
@@ -133,43 +136,20 @@ class IntroActivity : AppCompatActivity(), HomeBannerContract.View {
             }
         })
 
-        // btn get started set on click listener
         btnGetStarted.setOnClickListener {
-            val intentMyActivity = Intent(applicationContext, MainActivity::class.java)
+            val intentMyActivity = Intent(this, LoginActivity::class.java)
             startActivity(intentMyActivity)
-
-            // buat user ga akses intro lagi kalo udah pernah buka
-            // pake shared pref
-            savePrefsData()
+            SessionManager.getInstance(this).setFirstTimeLaunch(true)
             finish()
         }
     }
 
-    override fun hideLoading() {
-
-    }
-
-    private fun partItemClicked(partItem: Banner) {
-
-    }
-
-    private fun restorePrefData(): Boolean {
-        val pref = applicationContext.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
-        return pref.getBoolean("isIntroOpened", false)
-
-    }
-
-    private fun savePrefsData() {
-        val pref = applicationContext.getSharedPreferences("myPrefs", Context.MODE_PRIVATE)
-        val editor = pref.edit()
-        editor.putBoolean("isIntroOpened", true)
-        editor.commit()
-    }
 
     private fun loadLastScreen() {
         btnGetStarted.visibility = View.VISIBLE
         tabLayoutIndicator.visibility = View.VISIBLE
         btnNext.visibility = View.INVISIBLE
+        btnSkip.visibility = View.INVISIBLE
 
         // button animation
         btnGetStarted.animation = btnAnimation
@@ -180,5 +160,6 @@ class IntroActivity : AppCompatActivity(), HomeBannerContract.View {
         btnGetStarted.visibility = View.INVISIBLE
         tabLayoutIndicator.visibility = View.VISIBLE
         btnNext.visibility = View.VISIBLE
+        btnSkip.visibility = View.VISIBLE
     }
 }

@@ -6,12 +6,22 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object APIService{
 
-    val BASE_URL = "https://jsonplaceholder.typicode.com/"
-    val BASE_URL_STORAGE = "http://mediataklim.tech/"
+    val BASE_URL_GENERAL = "http://104.248.149.236/general/public/"
+    val BASE_URL_USER = "http://104.248.149.236/user/public/"
 
-    fun create() : APIRepository{
+    fun ApiGeneral() : APIRepository{
         val service  = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(BASE_URL_GENERAL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+
+        return service.create(APIRepository::class.java)
+    }
+
+    fun ApiUser() : APIRepository{
+        val service  = Retrofit.Builder()
+            .baseUrl(BASE_URL_USER)
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()

@@ -2,6 +2,7 @@ package com.fiqih.event.view.adapter
 
 import android.content.Context
 import android.support.v4.view.PagerAdapter
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,10 +11,12 @@ import android.widget.TextView
 import com.fiqih.event.R
 import com.fiqih.event.model.Banner
 import com.fiqih.event.model.ScreenItem
-import com.fiqih.event.rest.APIService
+import com.fiqih.event.model.itemScreen
+import com.fiqih.event.rest.APIService.BASE_URL_GENERAL
+import com.fiqih.event.util.CircleTransform
 import com.squareup.picasso.Picasso
 
-class IntroScreenAdapter(internal var mContext: Context, internal var mListScreen: List<Banner>) :
+class IntroScreenAdapter(internal var mContext: Context, internal var mListScreen: List<itemScreen>) :
     PagerAdapter() {
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
@@ -24,9 +27,10 @@ class IntroScreenAdapter(internal var mContext: Context, internal var mListScree
         val title = layoutScreen.findViewById<TextView>(R.id.txt_title_intro)
         val description = layoutScreen.findViewById<TextView>(R.id.txt_description_intro)
 
-        title.setText(mListScreen[position].title)
-        description.setText(mListScreen[position].body)
-        Picasso.get().load("https://static.simomot.com/wp-content/uploads/2014/05/gambar-vektor-jokowi-17-simomot.jpg")
+        Log.i("list data : ", mListScreen[position].toString())
+        title.setText(mListScreen[position].splash_title)
+        description.setText(mListScreen[position].splash_desc)
+        Picasso.get().load(BASE_URL_GENERAL+"/img/"+mListScreen[position].splash_image)
             //.placeholder(R.drawable.background_image_round)
             //.transform(CircleTransform())
             //.error(R.drawable.background_image_round)

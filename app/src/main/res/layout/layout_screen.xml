@@ -7,8 +7,9 @@
 >
     <ImageView
             android:id="@+id/img_screen_intro"
-            android:layout_width="280dp"
-            android:layout_height="280dp"
+            android:layout_width="307dp"
+            android:layout_height="256dp"
+            android:background="@android:color/transparent"
             android:src="@mipmap/ic_launcher_round"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"/>

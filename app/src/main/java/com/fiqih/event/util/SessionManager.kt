@@ -1,7 +1,6 @@
 package com.fiqih.event.util
 
 import android.content.Context
-import android.util.Log
 import com.fiqih.event.model.UserID
 
 class SessionManager private constructor(private val context: Context){
@@ -16,11 +15,12 @@ class SessionManager private constructor(private val context: Context){
         get() {
             val sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
             return UserID(
-                sharedPreferences.getInt("id", 0),
-                sharedPreferences.getString("token", null)
+                sharedPreferences.getInt("id", 1),
+                sharedPreferences.getString("token", null),
+                sharedPreferences.getInt("status_code", 200),
+                sharedPreferences.getString("error", null)
             )
         }
-
 
     fun saveUser(user: UserID?) {
 
@@ -37,13 +37,11 @@ class SessionManager private constructor(private val context: Context){
         val editor = sharedPreferences.edit()
         editor.putBoolean(IS_FIRST_TIME_LAUNCH, isFirstTime)
         editor.commit()
-        Log.i("introsession", "--1")
     }
 
     val isFirstTimeLaunch: Boolean
         get() {
             val sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
-            Log.i("introsession2", sharedPreferences.getBoolean(IS_FIRST_TIME_LAUNCH, false).toString())
             return sharedPreferences.getBoolean(IS_FIRST_TIME_LAUNCH, false)
         }
 

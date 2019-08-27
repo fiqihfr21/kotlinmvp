@@ -25,6 +25,9 @@
         <activity android:name=".view.activity.LoginActivity"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
+        <activity android:name=".view.activity.RegisterActivity"
+        android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
+
         <activity android:name=".view.activity.MainActivity"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
