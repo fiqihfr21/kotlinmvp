@@ -1,11 +1,9 @@
 package com.fiqih.event.contract
 
 import com.fiqih.event.model.Banner
-import com.fiqih.event.model.LogRegAPIResponse
 import com.fiqih.event.model.ScreenItem
 import com.fiqih.event.model.UserID
 import io.reactivex.Flowable
-import retrofit2.Response
 
 interface APIRepositoryContract{
 

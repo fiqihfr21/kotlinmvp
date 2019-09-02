@@ -87,9 +87,9 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View {
     }
 
     override fun logRegResponse(logRegResponse: UserID){
-        Log.i("status_code: ", logRegResponse.status_code.toString())
-        if(logRegResponse.status_code.toString() == "400"){
-            Toast.makeText(this@RegisterActivity, logRegResponse.error, Toast.LENGTH_SHORT).show()
+        Log.i("status_code: ", logRegResponse.StatusCode.toString())
+        if(logRegResponse.StatusCode.toString() == "400"){
+            Toast.makeText(this@RegisterActivity, logRegResponse.Error, Toast.LENGTH_SHORT).show()
         }else{
             SessionManager.getInstance(applicationContext).saveUser(logRegResponse)
             val intent = Intent(applicationContext, MainActivity::class.java)

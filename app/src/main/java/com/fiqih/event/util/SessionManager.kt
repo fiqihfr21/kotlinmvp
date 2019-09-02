@@ -1,6 +1,7 @@
 package com.fiqih.event.util
 
 import android.content.Context
+import android.content.SharedPreferences
 import com.fiqih.event.model.UserID
 
 class SessionManager private constructor(private val context: Context){
@@ -11,23 +12,28 @@ class SessionManager private constructor(private val context: Context){
             return sharedPreferences.getInt("id", -1) != -1
         }
 
-    val user: UserID
+    val user: SharedPreferences
         get() {
             val sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
-            return UserID(
-                sharedPreferences.getInt("id", 1),
-                sharedPreferences.getString("token", null),
-                sharedPreferences.getInt("status_code", 200),
-                sharedPreferences.getString("error", null)
-            )
+            sharedPreferences.getInt("id", 1)
+            sharedPreferences.getString("token", null)
+            sharedPreferences.getString("img_profile", "image/profile/default.png")
+            return sharedPreferences
+//            return User(
+//                sharedPreferences.getInt("id", 1),
+//                sharedPreferences.getString("token", null),
+//                sharedPreferences.getInt("status_code", 200),
+//                sharedPreferences.getString("error", null)
+//            )
         }
 
     fun saveUser(user: UserID?) {
 
         val sharedPreferences = context.getSharedPreferences(SHARED_PREF_NAME, Context.MODE_PRIVATE)
         val editor = sharedPreferences.edit()
-        editor.putInt("id", user!!.id)
-        editor.putString("token", user!!.token)
+        editor.putInt("id", user!!.user.id)
+        editor.putString("token", user!!.Token)
+        editor.putString("img_profile", user!!.user.user_image)
         editor.commit()
 
     }

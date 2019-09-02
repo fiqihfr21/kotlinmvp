@@ -9,10 +9,10 @@ import com.google.gson.annotations.SerializedName
 //)
 
 data class ScreenItem(
-    @SerializedName("data")
+    @SerializedName("Data")
     val itemScreen: List<itemScreen>,
-    val error: Boolean,
-    val message: String
+    val Error: Boolean,
+    val Message: String
 )
 
 data class itemScreen(

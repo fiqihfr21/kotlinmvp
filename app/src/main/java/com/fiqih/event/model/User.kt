@@ -1,21 +1,27 @@
 package com.fiqih.event.model
 
-data class LogRegAPIResponse(
-    val error: String,
-    val user: UserID
-)
+import com.google.gson.annotations.SerializedName
 
 data class UserID(
-    val id:Int,
-    val token: String,
-    val status_code: Int,
-    val error: String
+    val Token: String,
+    val StatusCode: Int,
+    val Error: String,
+    @SerializedName("Data") val user:User
 )
 
 data class User(
     val id: Int,
-    val email: String,
-    val email_verified_at: Any,
+    val activation_code: Any,
+    val active: String,
+    val created_at: String,
+    val job_title: Any,
     val name: String,
-    val avatar: String
+    val organisasi: Any,
+    val remember_token: Any,
+    val updated_at: String,
+    val user_email: String,
+    val user_image: String,
+    val user_password: String,
+    val user_phone_number: String
 )
+

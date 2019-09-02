@@ -23,13 +23,18 @@
         </activity>
 
         <activity android:name=".view.activity.LoginActivity"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        android:theme="@style/AppTheme"></activity>
 
         <activity android:name=".view.activity.RegisterActivity"
-        android:theme="@style/Theme.Design.Light.NoActionBar"></activity>
+        android:theme="@style/AppTheme"></activity>
 
         <activity android:name=".view.activity.MainActivity"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        android:theme="@style/AppTheme2"></activity>
+
+        <activity android:name=".view.activity.QRActivity"
+                  android:theme="@style/AppTheme"></activity>
+        <activity android:name=".view.activity.ScheduleActivity"
+                  android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

@@ -49,7 +49,6 @@ class IntroActivity : AppCompatActivity(), IntroScreenContract.View {
         doRequest()
     }
 
-    //            val intentMyActivity =
     private lateinit var presenter : IntroScreenPresenter
 
     private fun doRequest(){
@@ -64,30 +63,6 @@ class IntroActivity : AppCompatActivity(), IntroScreenContract.View {
         tabLayoutIndicator = findViewById(R.id.tab_indicator_intro)
         btnGetStarted = findViewById(R.id.btn_get_started)
         btnAnimation = AnimationUtils.loadAnimation(applicationContext, R.anim.button_animation)
-
-        // fill list screen
-//        val mList = ArrayList<ScreenItem>()
-//        mList.add(
-//            ScreenItem(
-//                "Scan",
-//                "Lorem ipsum dolor sit amet, eu nihil prompta vix, ne tacimates imperdiet vel, eu vis simul veniam regione. Postulant efficiendi sed at, eius liber bonorum id quo, mei ad noluisse patrioque. ",
-//                R.drawable.scan
-//            )
-//        )
-//        mList.add(
-//            ScreenItem(
-//                "Search",
-//                "Lorem ipsum dolor sit amet, eu nihil prompta vix, ne tacimates imperdiet vel, eu vis simul veniam regione. Postulant efficiendi sed at, eius liber bonorum id quo, mei ad noluisse patrioque.",
-//                R.drawable.search
-//            )
-//        )
-//        mList.add(
-//            ScreenItem(
-//                "Navigate",
-//                "Lorem ipsum dolor sit amet, eu nihil prompta vix, ne tacimates imperdiet vel, eu vis simul veniam regione. Postulant efficiendi sed at, eius liber bonorum id quo, mei ad noluisse patrioque.",
-//                R.drawable.navigate
-//            )
-//        )
 
         // setup viewpager
         viewPagerIntro = findViewById(R.id.viewPagerIntroSlider)
@@ -151,7 +126,6 @@ class IntroActivity : AppCompatActivity(), IntroScreenContract.View {
         btnNext.visibility = View.INVISIBLE
         btnSkip.visibility = View.INVISIBLE
 
-        // button animation
         btnGetStarted.animation = btnAnimation
 
     }

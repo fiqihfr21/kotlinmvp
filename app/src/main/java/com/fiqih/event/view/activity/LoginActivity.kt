@@ -8,7 +8,6 @@ import android.util.Log
 import android.widget.Toast
 import com.fiqih.event.R
 import com.fiqih.event.contract.LoginContract
-import com.fiqih.event.model.LogRegAPIResponse
 import com.fiqih.event.model.UserID
 import com.fiqih.event.presenter.APIRepositoryImplement
 import com.fiqih.event.presenter.LoginPresenter
@@ -29,10 +28,6 @@ class LoginActivity : AppCompatActivity(), LoginContract.View{
             if (validateLogin(user, pass)){
                 doRequest()
             }
-//            val intent = Intent(applicationContext, MainActivity::class.java)
-//            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//            startActivity(intent)
-//            finish()
         }
 
         btnRegist.setOnClickListener {
@@ -47,7 +42,6 @@ class LoginActivity : AppCompatActivity(), LoginContract.View{
     override fun onStart() {
         super.onStart()
 
-        //SessionManager.getInstance(this).setFirstTimeLaunch(true)
         if(SessionManager.getInstance(this).isLoggedIn){
             val intent = Intent(applicationContext, MainActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
@@ -57,13 +51,11 @@ class LoginActivity : AppCompatActivity(), LoginContract.View{
 
     private fun validateLogin(user: Editable, pass: Editable): Boolean {
         if (user == null || user.trim().isEmpty()){
-            //Toast.makeText(this, "Masukan Email dan Password anda", Toast.LENGTH_SHORT).show()
             etemail.error = "Masukan Email Anda"
             etemail.requestFocus()
             return false
         }
         if (pass == null || pass.trim().isEmpty()){
-            //Toast.makeText(this, "Masukan Email dan Password anda", Toast.LENGTH_SHORT).show()
             etpassword.error = "Masukan Password Anda"
             etpassword.requestFocus()
             return false
@@ -81,9 +73,9 @@ class LoginActivity : AppCompatActivity(), LoginContract.View{
     }
 
     override fun logRegResponse(logRegResponse: UserID) {
-        Log.i("status_code: ", logRegResponse.status_code.toString())
-        if(logRegResponse.status_code.toString() == "400"){
-            Toast.makeText(this@LoginActivity, logRegResponse.error, Toast.LENGTH_SHORT).show()
+        Log.i("status_code: ", logRegResponse.StatusCode.toString())
+        if(logRegResponse.StatusCode.toString() == "400"){
+            Toast.makeText(this@LoginActivity, logRegResponse.Error, Toast.LENGTH_SHORT).show()
         }else{
             SessionManager.getInstance(applicationContext).saveUser(logRegResponse)
             val intent = Intent(applicationContext, MainActivity::class.java)

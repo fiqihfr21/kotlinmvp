@@ -1,7 +1,6 @@
 package com.fiqih.event.rest
 
 import com.fiqih.event.model.Banner
-import com.fiqih.event.model.LogRegAPIResponse
 import com.fiqih.event.model.ScreenItem
 import com.fiqih.event.model.UserID
 import io.reactivex.Flowable
