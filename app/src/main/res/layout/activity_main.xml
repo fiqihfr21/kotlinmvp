@@ -108,16 +108,22 @@
 
             </RelativeLayout>
 
-            <android.support.v7.widget.RecyclerView
-                    android:id="@+id/id_recycler_view"
+            <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginTop="16dp"
-            >
-            </android.support.v7.widget.RecyclerView>
+                    android:layout_height="match_parent">
+                <android.support.v7.widget.RecyclerView
+                        android:id="@+id/id_recycler_view"
+                        android:layout_width="match_parent"
+                        android:layout_centerInParent="true"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginRight="8dp"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginTop="16dp"
+                >
+                </android.support.v7.widget.RecyclerView>
+
+            </RelativeLayout>
 
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>

@@ -6,7 +6,6 @@
         xmlns:card_view="http://schemas.android.com/tools"
         app:cardElevation="4dp"
         android:clickable="true"
-        app:cardCornerRadius="20dp"
         card_view:cardUseCompatPadding="true"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:foreground="?android:attr/selectableItemBackground"

@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
         dotsIndicator = findViewById(R.id.tab_indicator_banner_home)
 
         val listBanner = ArrayList<Banner>()
+
         listBanner.add(Banner(R.drawable.ic_img_profile,1,"as","as","-a"))
         listBanner.add(Banner(R.drawable.ic_img_profile,2,"as","as","-a"))
         listBanner.add(Banner(R.drawable.ic_img_profile,3,"as","as","-a"))

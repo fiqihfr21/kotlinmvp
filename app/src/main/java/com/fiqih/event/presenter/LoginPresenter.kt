@@ -8,7 +8,6 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subscribers.ResourceSubscriber
 
-
 class LoginPresenter(private val view: LoginContract.View,
                      private val apiRepositoryImplement: APIRepositoryImplement):LoginContract.Presenter{
 

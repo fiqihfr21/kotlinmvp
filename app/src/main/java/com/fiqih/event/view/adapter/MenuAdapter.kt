@@ -8,15 +8,11 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.fiqih.event.R
 import com.fiqih.event.model.Menu
-import com.fiqih.event.view.activity.QRActivity
-import com.fiqih.event.view.activity.ScheduleActivity
+import com.fiqih.event.view.activity.*
 import com.fiqih.event.view.fragment.BSMenuFragment
-import com.fiqih.event.view.fragment.BSQRFragment
 import com.fiqih.event.view.viewholder.MenuViewHolder
-
 
 class MenuAdapter(private val mContext: Context, private val mData: List<Menu>) :
     RecyclerView.Adapter<MenuViewHolder>() {
@@ -43,38 +39,21 @@ class MenuAdapter(private val mContext: Context, private val mData: List<Menu>) 
 //                    sheet.show((mContext as AppCompatActivity).supportFragmentManager, "BottomSheetFragment")
                     mContext.startActivity(Intent(mContext, QRActivity::class.java))
                 } else if (position == 1) {
-                    // open activity_maps agenda
+
                     mContext.startActivity(Intent(mContext, ScheduleActivity::class.java))
                 } else if (position == 2) {
-                    // message
-                    //open activity_maps my Booking activity_maps
-//                    val intentMyBooking = Intent(mContext, MyBookingActivity::class.java)
-//                    mContext.startActivity(intentMyBooking)
-                    Toast.makeText(mContext, "ini message", Toast.LENGTH_SHORT).show()
+
+                    mContext.startActivity(Intent(mContext, MessageActivity::class.java))
                 }else if (position == 3) {
-                    // message
-                    //open activity_maps my Booking activity_maps
-//                    val intentMyBooking = Intent(mContext, MyBookingActivity::class.java)
-//                    mContext.startActivity(intentMyBooking)
-                    Toast.makeText(mContext, "ini message", Toast.LENGTH_SHORT).show()
+
+                    mContext.startActivity(Intent(mContext, MapsActivity::class.java))
                 }else if (position == 4) {
-                    // message
-                    //open activity_maps my Booking activity_maps
-//                    val intentMyBooking = Intent(mContext, MyBookingActivity::class.java)
-//                    mContext.startActivity(intentMyBooking)
-                    Toast.makeText(mContext, "ini message", Toast.LENGTH_SHORT).show()
+
+                    mContext.startActivity(Intent(mContext, GaleryActivity::class.java))
                 }else if (position == 5) {
-                    // message
-                    //open activity_maps my Booking activity_maps
-//                    val intentMyBooking = Intent(mContext, MyBookingActivity::class.java)
-//                    mContext.startActivity(intentMyBooking)
-                    Toast.makeText(mContext, "ini message", Toast.LENGTH_SHORT).show()
+                    mContext.startActivity(Intent(mContext, DocumentActivity::class.java))
                 }else if (position == 6) {
-                    // message
-                    //open activity_maps my Booking activity_maps
-//                    val intentMyBooking = Intent(mContext, MyBookingActivity::class.java)
-//                    mContext.startActivity(intentMyBooking)
-                    Toast.makeText(mContext, "ini message", Toast.LENGTH_SHORT).show()
+                    mContext.startActivity(Intent(mContext, QuizActivity::class.java))
                 } else {
                     val sheet = BSMenuFragment()
                     sheet.show((mContext as AppCompatActivity).supportFragmentManager, "BottomSheetFragment")
