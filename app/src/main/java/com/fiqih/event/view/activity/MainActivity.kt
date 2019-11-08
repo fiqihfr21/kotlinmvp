@@ -4,7 +4,6 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import com.fiqih.event.R
-import com.fiqih.event.rest.APIService.BASE_URL_USER
 import com.fiqih.event.util.CircleTransform
 import com.fiqih.event.util.SessionManager
 import com.fiqih.event.view.adapter.HomeBannerAdapter
@@ -18,13 +17,21 @@ import com.fiqih.event.model.Banner
 import java.util.*
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
+import com.fiqih.event.contract.HomeBannerContract
 import com.fiqih.event.model.Menu
+import com.fiqih.event.model.itemBanner
+import com.fiqih.event.presenter.APIRepositoryImplement
+import com.fiqih.event.presenter.HomeBannerPresenter
+import com.fiqih.event.presenter.IntroScreenPresenter
+import com.fiqih.event.rest.APIService
+import com.fiqih.event.rest.APIService.BASE_URL
 import com.fiqih.event.view.adapter.MenuAdapter
 import kotlinx.android.synthetic.main.bottom_sheet_grid.*
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), HomeBannerContract.View {
 
     private var viewPagerBannerHome: ViewPager? = null
     internal lateinit var bannerHomeViewPagerAdapter: HomeBannerAdapter
@@ -53,42 +60,13 @@ class MainActivity : AppCompatActivity() {
 //            startActivity(intent)
 //        }
 
-        Picasso.get().load(BASE_URL_USER + SessionManager.getInstance(this).user.getString("img_profile", "image/profile/default.png"))
+        doRequestBanner()
+
+        Picasso.get().load(BASE_URL + SessionManager.getInstance(this).user.getString("img_profile", "image/profile/default.png"))
             .placeholder(R.drawable.ic_img_profile)
             .transform(CircleTransform())
             .error(R.drawable.ic_img_profile)
             .into(img_profile)
-
-        dotsIndicator = findViewById(R.id.tab_indicator_banner_home)
-
-        val listBanner = ArrayList<Banner>()
-
-        listBanner.add(Banner(R.drawable.ic_img_profile,1,"as","as","-a"))
-        listBanner.add(Banner(R.drawable.ic_img_profile,2,"as","as","-a"))
-        listBanner.add(Banner(R.drawable.ic_img_profile,3,"as","as","-a"))
-
-        viewPagerBannerHome = findViewById(R.id.viewPagerBannerHome)
-        bannerHomeViewPagerAdapter = HomeBannerAdapter(this, listBanner)
-        viewPagerBannerHome!!.adapter = bannerHomeViewPagerAdapter
-
-        dotsIndicator.setViewPager(viewPagerBannerHome)
-
-        val handler = Handler()
-        val runnable = Runnable {
-            if (current_position == listBanner!!.size){
-                current_position = 0
-            }
-
-            viewPagerBannerHome!!.setCurrentItem(current_position++, true)
-        }
-
-        timer = Timer()
-        timer!!.schedule(object : TimerTask() {
-            override fun run() {
-                handler.post(runnable)
-            }
-        }, 500, 3000)
-
 
         val listMenu = ArrayList<Menu>()
         listMenu.add(Menu("Barcode", R.drawable.ic_qr))
@@ -110,6 +88,41 @@ class MainActivity : AppCompatActivity() {
         myrv.layoutManager = GridLayoutManager(this, 4)
         myrv.adapter = myAdapter
 
+    }
+
+
+    private lateinit var homeBannerPresenter : HomeBannerPresenter
+    private fun doRequestBanner(){
+        homeBannerPresenter = HomeBannerPresenter(this@MainActivity, APIRepositoryImplement(APIService.Api()))
+        homeBannerPresenter.getBanner(SessionManager.getInstance(this).apptoken.getString("apptoken", "default_app_token"))
+    }
+
+    override fun listProfile(banner: Banner) {
+
+        Log.i("tes_app_banner", banner.toString())
+        dotsIndicator = findViewById(R.id.tab_indicator_banner_home)
+
+        viewPagerBannerHome = findViewById(R.id.viewPagerBannerHome)
+        bannerHomeViewPagerAdapter = HomeBannerAdapter(this, banner.itemBanner)
+        viewPagerBannerHome!!.adapter = bannerHomeViewPagerAdapter
+
+        dotsIndicator.setViewPager(viewPagerBannerHome)
+
+        val handler = Handler()
+        val runnable = Runnable {
+            if (current_position == banner.itemBanner!!.size){
+                current_position = 0
+            }
+
+            viewPagerBannerHome!!.setCurrentItem(current_position++, true)
+        }
+
+        timer = Timer()
+        timer!!.schedule(object : TimerTask() {
+            override fun run() {
+                handler.post(runnable)
+            }
+        }, 500, 3000)
     }
 
 }

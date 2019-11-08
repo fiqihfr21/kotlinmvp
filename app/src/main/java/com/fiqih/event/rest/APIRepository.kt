@@ -1,5 +1,6 @@
 package com.fiqih.event.rest
 
+import com.fiqih.event.model.AppKey
 import com.fiqih.event.model.Banner
 import com.fiqih.event.model.ScreenItem
 import com.fiqih.event.model.UserID
@@ -9,11 +10,14 @@ import retrofit2.http.GET
 
 interface APIRepository{
 
-    @GET("splashscreen")
-    fun getIntroScreen(): Flowable<ScreenItem>
+    @POST("auth/public/api/token")
+    fun getAppToken(@Header("apptoken")apptoken : String,@Header("securitykey")securitykey : String):Flowable<AppKey>
+
+    @GET("gateway/public/splashscreen")
+    fun getIntroScreen(@Header("token")apptoken : String): Flowable<ScreenItem>
 
     @FormUrlEncoded
-    @POST("auth/login")
+    @POST("member/public/auth/login")
     @Headers("No-Authentication: true")
     fun loginUser(@Field("user_email") email:String, @Field("user_password") password:String): Flowable<UserID>
 
@@ -22,7 +26,7 @@ interface APIRepository{
     @Headers("No-Authentication: true")
     fun registerUser(@Field("name") name:String, @Field("user_phone_number") phone:String, @Field("user_email") email:String, @Field("user_password") password:String): Flowable<UserID>
 
-    @GET("posts")
-    fun getBanner(@Header("Authorization")auth: String): Flowable<List<Banner>>
+    @GET("gateway/public/banner")
+    fun getBanner(@Header("token")apptoken: String): Flowable<Banner>
 
 }

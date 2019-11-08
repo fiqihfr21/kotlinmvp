@@ -22,10 +22,11 @@ class LoginActivity : AppCompatActivity(), LoginContract.View{
         setContentView(R.layout.activity_login)
 
         btnlogin.setOnClickListener {
+            Log.i("btnlogin", "ok")
             val user = etemail.text
             val pass = etpassword.text
 
-            if (validateLogin(user, pass)){
+            if (validateLogin(user, pass) == true){
                 doRequest()
             }
         }
@@ -64,7 +65,7 @@ class LoginActivity : AppCompatActivity(), LoginContract.View{
     }
 
     private fun doRequest(){
-        presenter = LoginPresenter(this, APIRepositoryImplement(APIService.ApiUser()))
+        presenter = LoginPresenter(this, APIRepositoryImplement(APIService.Api()))
         presenter.getUser(etemail.text.toString(), etpassword.text.toString())
     }
 

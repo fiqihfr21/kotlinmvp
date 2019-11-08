@@ -9,7 +9,7 @@ interface IntroScreenContract{
     }
 
     interface Presenter{
-        fun getIntroScreen()
+        fun getIntroScreen(apptoken : String)
         fun destroyFetch()
     }
 }

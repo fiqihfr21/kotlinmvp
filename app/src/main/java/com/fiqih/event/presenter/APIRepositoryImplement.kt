@@ -1,6 +1,7 @@
 package com.fiqih.event.presenter
 
 import com.fiqih.event.contract.APIRepositoryContract
+import com.fiqih.event.model.AppKey
 import com.fiqih.event.model.Banner
 import com.fiqih.event.model.ScreenItem
 import com.fiqih.event.model.UserID
@@ -9,8 +10,12 @@ import io.reactivex.Flowable
 
 class APIRepositoryImplement(private val apiRepository: APIRepository): APIRepositoryContract{
 
-    override fun getIntroScreen(): Flowable<ScreenItem> {
-        return apiRepository.getIntroScreen()
+    override fun getAppToken(apptoken : String, securitykey:String): Flowable<AppKey> {
+        return  apiRepository.getAppToken(apptoken, securitykey)
+    }
+
+    override fun getIntroScreen(apptoken: String): Flowable<ScreenItem> {
+        return apiRepository.getIntroScreen(apptoken)
     }
 
     override fun login(email:String, password:String): Flowable<UserID> {
@@ -21,7 +26,7 @@ class APIRepositoryImplement(private val apiRepository: APIRepository): APIRepos
         return apiRepository.registerUser(name,phone,email,password)
     }
 
-    override fun getBanner(auth:String): Flowable<List<Banner>> {
+    override fun getBanner(auth:String): Flowable<Banner> {
         return apiRepository.getBanner(auth)
     }
 

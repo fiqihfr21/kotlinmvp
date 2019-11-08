@@ -45,6 +45,20 @@ class SessionManager private constructor(private val context: Context){
         editor.commit()
     }
 
+    fun saveAppToken(apptoken : String){
+        val sharedPreferences = context.getSharedPreferences(SHARE_PREF_APP_TOKEN, Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("apptoken", apptoken)
+        editor.commit()
+    }
+
+    val apptoken: SharedPreferences
+        get() {
+            val sharedPreferences = context.getSharedPreferences(SHARE_PREF_APP_TOKEN, Context.MODE_PRIVATE)
+            sharedPreferences.getString("apptoken", "default_app_token")
+            return sharedPreferences
+        }
+
     val isFirstTimeLaunch: Boolean
         get() {
             val sharedPreferences = context.getSharedPreferences(PREF_NAME, Context.MODE_PRIVATE)
@@ -65,6 +79,8 @@ class SessionManager private constructor(private val context: Context){
         private val IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch"
 
         private val SHARED_PREF_NAME = "MY_SHARED_PREFERENCE"
+
+        private val SHARE_PREF_APP_TOKEN = "SHARE_PREF_APP_TOKEN"
 
         private var mInstance: SessionManager? = null
 

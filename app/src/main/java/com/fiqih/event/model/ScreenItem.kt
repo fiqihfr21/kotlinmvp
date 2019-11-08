@@ -8,6 +8,13 @@ import com.google.gson.annotations.SerializedName
 //    val image:String
 //)
 
+data class AppKey(
+    val StatusCode : Int,
+    val Error : String,
+    val Message: String,
+    val Data : String
+)
+
 data class ScreenItem(
     @SerializedName("Data")
     val itemScreen: List<itemScreen>,

@@ -52,8 +52,8 @@ class IntroActivity : AppCompatActivity(), IntroScreenContract.View {
     private lateinit var presenter : IntroScreenPresenter
 
     private fun doRequest(){
-        presenter = IntroScreenPresenter(this, APIRepositoryImplement(APIService.ApiGeneral()))
-        presenter.getIntroScreen()
+        presenter = IntroScreenPresenter(this, APIRepositoryImplement(APIService.Api()))
+        presenter.getIntroScreen(SessionManager.getInstance(this).apptoken.getString("apptoken", "default_app_token"))
     }
 
     override fun listIntro(screenItem: ScreenItem) {

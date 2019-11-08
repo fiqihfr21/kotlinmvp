@@ -12,7 +12,7 @@ import com.fiqih.event.R
 import com.fiqih.event.model.Banner
 import com.fiqih.event.model.ScreenItem
 import com.fiqih.event.model.itemScreen
-import com.fiqih.event.rest.APIService.BASE_URL_GENERAL
+import com.fiqih.event.rest.APIService.BASE_URL
 import com.fiqih.event.util.CircleTransform
 import com.squareup.picasso.Picasso
 
@@ -30,7 +30,7 @@ class IntroScreenAdapter(internal var mContext: Context, internal var mListScree
         Log.i("list data : ", mListScreen[position].toString())
         title.setText(mListScreen[position].splash_title)
         description.setText(mListScreen[position].splash_desc)
-        Picasso.get().load(BASE_URL_GENERAL+"/img/"+mListScreen[position].splash_image)
+        Picasso.get().load(mListScreen[position].splash_image)
             //.placeholder(R.drawable.background_image_round)
             //.transform(CircleTransform())
             //.error(R.drawable.background_image_round)

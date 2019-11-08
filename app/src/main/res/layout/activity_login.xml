@@ -80,21 +80,21 @@
                 android:fontFamily="@font/montserrat_regular"
         />
 
-        <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+<!--        <RelativeLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginTop="16dp">-->
 
-            <!--garis-->
+<!--            &lt;!&ndash;garis&ndash;&gt;-->
 
-            <!--tulisan or-->
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:text="OR" />
-        </RelativeLayout>
+<!--            &lt;!&ndash;tulisan or&ndash;&gt;-->
+<!--            <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_centerInParent="true"-->
+<!--                    android:fontFamily="@font/montserrat_regular"-->
+<!--                    android:text="OR" />-->
+<!--        </RelativeLayout>-->
 
         <!--<Button-->
         <!--android:id="@+id/btn_facebook"-->

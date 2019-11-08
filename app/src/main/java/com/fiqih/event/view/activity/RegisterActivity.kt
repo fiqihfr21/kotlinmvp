@@ -78,7 +78,7 @@ class RegisterActivity : AppCompatActivity(), RegisterContract.View {
 
     private lateinit var presenter : RegisterPresenter
     private fun doRequest(){
-        presenter = RegisterPresenter(this, APIRepositoryImplement(APIService.ApiUser()))
+        presenter = RegisterPresenter(this, APIRepositoryImplement(APIService.Api()))
         presenter.getUser(et_username.text.toString(), et_mobile_phone.text.toString(), et_email.text.toString(), et_password.text.toString())
     }
 

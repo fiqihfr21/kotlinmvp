@@ -16,11 +16,12 @@ import android.support.v4.content.ContextCompat.getSystemService
 import android.support.v4.view.PagerAdapter
 import android.view.View
 import android.widget.ImageView
+import com.fiqih.event.model.itemBanner
 import com.fiqih.event.rest.APIService
 import com.squareup.picasso.Picasso
 
 
-class HomeBannerAdapter(internal var mContext: Context, internal var mListBanner: List<Banner>) : PagerAdapter() {
+class HomeBannerAdapter(internal var mContext: Context, internal var mListBanner: List<itemBanner>) : PagerAdapter() {
 
     @NonNull
     override fun instantiateItem(@NonNull container: ViewGroup, position: Int): Any {
@@ -29,7 +30,7 @@ class HomeBannerAdapter(internal var mContext: Context, internal var mListBanner
 
         val imgBanner = layoutBanner.findViewById<ImageView>(R.id.img_banner_home)
 
-        Picasso.get().load("https://ak4.picdn.net/shutterstock/videos/1023847684/thumb/5.jpg")
+        Picasso.get().load(mListBanner[position].banner_image)
             //.placeholder(R.drawable.background_image_round)
             //.transform(CircleTransform())
             //.error(R.drawable.background_image_round)

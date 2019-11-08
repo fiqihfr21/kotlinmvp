@@ -14,22 +14,20 @@ class HomeBannerPresenter(private val view: HomeBannerContract.View,
 
     private val compositeDisposable = CompositeDisposable()
 
-    override fun getBanner(auth:String) {
+    override fun getBanner(apptoken:String) {
 
-        view.showLoading()
-        compositeDisposable.add(apiRepositoryImplement.getBanner(auth).observeOn(AndroidSchedulers.mainThread()).subscribeOn(
-            Schedulers.io()).subscribeWith(object : ResourceSubscriber<List<Banner>>(){
+//        view.showLoading()
+        compositeDisposable.add(apiRepositoryImplement.getBanner(apptoken).observeOn(AndroidSchedulers.mainThread()).subscribeOn(
+            Schedulers.io()).subscribeWith(object : ResourceSubscriber<Banner>(){
             override fun onComplete() {
-                view.hideLoading()
+//                view.hideLoading()
             }
 
-            override fun onNext(t: List<Banner>?) {
+            override fun onNext(t: Banner?) {
                 view.listProfile(t!!)
             }
 
             override fun onError(t: Throwable?) {
-                view.hideLoading()
-                view.listProfile(Collections.emptyList())
             }
 
         }))
