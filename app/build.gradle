@@ -65,4 +65,13 @@ dependencies {
     implementation 'com.google.maps.android:android-maps-utils:0.5'
 
 //    implementation 'de.hdodenhof:circleimageview:2.2.0'
+    implementation 'com.borjabravo:simpleratingbar:1.0.0'
 }
+
+
+
+
+
+
+
+

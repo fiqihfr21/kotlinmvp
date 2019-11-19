@@ -1,5 +1,7 @@
 package com.fiqih.event.view.activity
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import com.fiqih.event.R
@@ -22,5 +24,19 @@ class DetailGaleryActivity : AppCompatActivity(){
 //            .placeholder(R.drawable.background_image_placeholder)
 //            .error(R.drawable.background_image_placeholder)
             .into(im_detail_galery)
+
+        ic_share.setOnClickListener {
+            val shareIntent: Intent = Intent().apply {
+                action = Intent.ACTION_SEND
+                putExtra(Intent.EXTRA_STREAM, img)
+                type = "image/*"
+            }
+            startActivity(Intent.createChooser(shareIntent, "Share image to ..."))
+        }
+
+        ic_download.setOnClickListener {
+            val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(img))
+            startActivity(browserIntent)
+        }
     }
 }

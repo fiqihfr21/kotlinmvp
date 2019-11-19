@@ -4,9 +4,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.fiqih.event.model.Document
+import com.fiqih.event.model.itemDocument
 import com.fiqih.event.view.viewholder.DocViewHolder
 
-class DocAdapter(private val list: List<Document>, val clickListener : (Document)->Unit) : RecyclerView.Adapter<DocViewHolder>(){
+class DocAdapter(private val list: List<itemDocument>, val clickListener : (itemDocument)->Unit) : RecyclerView.Adapter<DocViewHolder>(){
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): DocViewHolder {
         val inflater = LayoutInflater.from(p0.context)

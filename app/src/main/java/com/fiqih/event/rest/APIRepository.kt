@@ -1,9 +1,6 @@
 package com.fiqih.event.rest
 
-import com.fiqih.event.model.AppKey
-import com.fiqih.event.model.Banner
-import com.fiqih.event.model.ScreenItem
-import com.fiqih.event.model.UserID
+import com.fiqih.event.model.*
 import io.reactivex.Flowable
 import retrofit2.http.*
 import retrofit2.http.GET
@@ -29,4 +26,12 @@ interface APIRepository{
     @GET("gateway/public/banner")
     fun getBanner(@Header("token")apptoken: String): Flowable<Banner>
 
+    @GET("gateway/public/document")
+    fun getDocument(@Header("token")apptoken: String) : Flowable<Document>
+
+    @GET("gateway/public/gallery")
+    fun getGalery(@Header("token")apptoken: String):Flowable<Galery>
+
+    @GET("gateway/public/viewevent")
+    fun getEvent(@Header("token")apptoken: String):Flowable<Event>
 }

@@ -103,18 +103,18 @@
                         android:textSize="12sp"
                         android:text="Jalan Metro Pondok Indah KAV. IV, RT.1/RW.16, TA, Kec. Kby. Lama, Kota Jakarta Selatan,"/>
 
-                <Button
-                        android:id="@+id/btn_direction"
-                        android:layout_marginTop="5dp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="27dp"
-                        android:layout_marginLeft="20dp"
-                        android:textSize="8sp"
-                        android:layout_marginBottom="1dp"
-                        android:textColor="@color/white"
-                        android:text="Get direction"
-                        android:background="@drawable/bg_button_direction"
-                />
+<!--                <Button-->
+<!--                        android:id="@+id/btn_direction"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="27dp"-->
+<!--                        android:layout_marginLeft="20dp"-->
+<!--                        android:textSize="8sp"-->
+<!--                        android:layout_marginBottom="1dp"-->
+<!--                        android:textColor="@color/white"-->
+<!--                        android:text="Get direction"-->
+<!--                        android:background="@drawable/bg_button_direction"-->
+<!--                />-->
 
             </LinearLayout>
 

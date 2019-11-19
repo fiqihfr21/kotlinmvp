@@ -1,10 +1,7 @@
 package com.fiqih.event.presenter
 
 import com.fiqih.event.contract.APIRepositoryContract
-import com.fiqih.event.model.AppKey
-import com.fiqih.event.model.Banner
-import com.fiqih.event.model.ScreenItem
-import com.fiqih.event.model.UserID
+import com.fiqih.event.model.*
 import com.fiqih.event.rest.APIRepository
 import io.reactivex.Flowable
 
@@ -28,6 +25,18 @@ class APIRepositoryImplement(private val apiRepository: APIRepository): APIRepos
 
     override fun getBanner(auth:String): Flowable<Banner> {
         return apiRepository.getBanner(auth)
+    }
+
+    override fun getDocument(auth: String): Flowable<Document> {
+        return apiRepository.getDocument(auth)
+    }
+
+    override fun getGalery(auth: String): Flowable<Galery> {
+        return apiRepository.getGalery(auth)
+    }
+
+    override fun getEvent(auth: String): Flowable<Event> {
+        return apiRepository.getEvent(auth)
     }
 
 }

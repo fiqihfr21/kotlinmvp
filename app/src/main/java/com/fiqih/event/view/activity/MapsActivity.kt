@@ -2,6 +2,7 @@ package com.fiqih.event.view.activity
 
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import com.fiqih.event.R
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -13,10 +14,17 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.Marker
 import kotlinx.android.synthetic.main.activity_qr.*
 import android.widget.Toast
+import com.fiqih.event.contract.EventContract
+import com.fiqih.event.model.Event
+import com.fiqih.event.presenter.APIRepositoryImplement
+import com.fiqih.event.presenter.DocumentPresenter
+import com.fiqih.event.presenter.EventPresenter
+import com.fiqih.event.rest.APIService
+import com.fiqih.event.util.SessionManager
 import com.fiqih.event.view.fragment.DetailMapsFragmen
 
 
-class MapsActivity:AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
+class MapsActivity:AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerClickListener, EventContract.View {
 
     private lateinit var mMap: GoogleMap
 
@@ -30,6 +38,20 @@ class MapsActivity:AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarkerCl
             finish()
         }
 
+        doRequest()
+    }
+
+    override fun event(event: Event) {
+        Log.i("latlong", "latitude "+event.eventDetail.event_latitude + " dan longitute "+ event.eventDetail.event_longitude)
+//        return event.eventDetail.event_latitude
+    }
+
+    private lateinit var eventPresenter: EventPresenter
+    private fun doRequest(){
+        eventPresenter = EventPresenter(this, APIRepositoryImplement(
+            APIService.Api())
+        )
+        eventPresenter.getEvent(SessionManager.getInstance(this).apptoken.getString("apptoken", "default_app_token"))
     }
 
     override fun onMapReady(googleMap: GoogleMap?) {

@@ -1,13 +1,11 @@
 package com.fiqih.event.presenter
 
-import android.provider.ContactsContract
 import com.fiqih.event.contract.HomeBannerContract
 import com.fiqih.event.model.Banner
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subscribers.ResourceSubscriber
-import java.util.*
 
 class HomeBannerPresenter(private val view: HomeBannerContract.View,
                           private val apiRepositoryImplement: APIRepositoryImplement):HomeBannerContract.Presenter{
@@ -16,18 +14,19 @@ class HomeBannerPresenter(private val view: HomeBannerContract.View,
 
     override fun getBanner(apptoken:String) {
 
-//        view.showLoading()
         compositeDisposable.add(apiRepositoryImplement.getBanner(apptoken).observeOn(AndroidSchedulers.mainThread()).subscribeOn(
             Schedulers.io()).subscribeWith(object : ResourceSubscriber<Banner>(){
             override fun onComplete() {
-//                view.hideLoading()
+
             }
 
             override fun onNext(t: Banner?) {
                 view.listProfile(t!!)
             }
 
+
             override fun onError(t: Throwable?) {
+
             }
 
         }))

@@ -1,6 +1,127 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbarHome"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/blue"
+                android:theme="@style/ToolbarTheme"
+                app:titleTextColor="@color/blue"
+                android:paddingHorizontal="16dp"
+                android:contentInsetLeft="0dp"
+                android:contentInsetStart="0dp"
+                app:contentInsetLeft="0dp"
+                app:contentInsetStart="0dp"
+                android:contentInsetRight="0dp"
+                android:contentInsetEnd="0dp"
+                app:contentInsetRight="0dp"
+                app:contentInsetEnd="0dp">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    >
+
+                <ImageView
+                        android:id="@+id/im_back"
+                        android:layout_width="34dp"
+                        android:layout_height="34dp"
+                        android:src="@drawable/ic_keyboard_arrow_left"
+                        android:layout_gravity="center"
+                        android:layout_alignParentStart="true"
+                        android:clickable="true"
+                        />
+                <TextView
+                        android:layout_toRightOf="@+id/im_back"
+                        android:layout_centerVertical="true"
+                        android:textColor="@color/white"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Feedback"/>
+
+            </RelativeLayout>
+
+        </android.support.v7.widget.Toolbar>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_white"
+            android:layout_margin="16dp"
+            android:paddingBottom="30dp"
+            >
+
+        <TextView
+                android:paddingVertical="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Give us your ratingof EMA Forum Event"
+                android:layout_gravity="center"/>
+
+    <com.borjabravo.simpleratingbar.SimpleRatingBar
+            android:layout_gravity="center"
+            android:id="@+id/ratingfeedback"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:isIndicator="false"
+            app:rating="0"
+            app:ratingCount="5"
+            app:ratingMargin="15dp"
+            app:ratingSize="42dp"
+            tools:ignore="MissingConstraints" />
+
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/rounded_white"
+            android:layout_margin="16dp"
+            android:paddingBottom="30dp"
+            android:paddingHorizontal="20dp"
+            >
+        <TextView
+                android:paddingVertical="20dp"
+                android:paddingHorizontal="50dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Share your experience after joining EMA Forum Event"
+                android:layout_gravity="center"/>
+
+        <EditText
+                android:id="@+id/etfeedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#BDBDBD"
+                android:hint="Your feedback"
+                android:textSize="18sp"
+                android:fontFamily="@font/montserrat_regular"
+                android:inputType="text" />
+
+        <Button
+                android:id="@+id/btnfeedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:background="@drawable/rounded_yellow"
+                android:text="Send"
+                android:fontFamily="@font/montserrat_regular"
+                />
+    </LinearLayout>
+</LinearLayout>
