@@ -20,4 +20,6 @@ interface APIRepositoryContract{
     fun getGalery(auth: String):Flowable<Galery>
 
     fun getEvent(auth: String):Flowable<Event>
+
+    fun getQuiz(auth: String):Flowable<Quiz>
 }

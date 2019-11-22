@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.fiqih.event">
+        package="com.fiqih.event">
 
     <permission
             android:name="yourpackageName.permission.MAPS_RECEIVE"
-            android:protectionLevel="signature"/>
-    <uses-permission android:name="yourpackageName.permission.MAPS_RECEIVE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+            android:protectionLevel="signature" />
+
+    <uses-permission android:name="yourpackageName.permission.MAPS_RECEIVE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
             android:allowBackup="true"
             android:icon="@mipmap/ic_launcher"
@@ -17,53 +19,72 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity android:name=".view.activity.QuizQuestionActivity"></activity>
+
         <meta-data
                 android:name="com.google.android.maps.v2.API_KEY"
-                android:value="AIzaSyDIS0Y5lW2BReRNq69vLQdi05Rxsf0kFRM"/>
+                android:value="AIzaSyDIS0Y5lW2BReRNq69vLQdi05Rxsf0kFRM" />
 
-        <activity android:name=".view.activity.IntroActivity"
-        android:theme="@style/AppTheme"/>
-        <activity android:name=".view.activity.SplashActivity"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        <activity
+                android:name=".view.activity.IntroActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".view.activity.SplashActivity"
+                android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".view.activity.LoginActivity"
-        android:theme="@style/AppTheme"/>
-        <activity android:name=".view.activity.RegisterActivity"
-        android:theme="@style/AppTheme"/>
-        <activity android:name=".view.activity.MainActivity"
-        android:theme="@style/AppTheme2"/>
-        <activity android:name=".view.activity.QRActivity"
-                  android:theme="@style/AppTheme"/>
-        <activity android:name=".view.activity.ScheduleActivity"
-                  android:theme="@style/AppTheme"/>
-        <activity android:name=".view.activity.AboutActivity"
-                  android:theme="@style/AppTheme"/>
-        <activity android:name=".view.activity.DocumentActivity"
-                  android:theme="@style/AppTheme"/>
-        <activity android:name=".view.activity.FeedbackActivity"
-                  android:theme="@style/AppTheme"/>
-        <activity android:name=".view.activity.GaleryActivity"
-                  android:theme="@style/AppTheme"/>
-        <activity android:name=".view.activity.MapsActivity"
-                  android:theme="@style/AppTheme"/>
-        <activity android:name=".view.activity.SouvenirActivity"
-                  android:theme="@style/AppTheme"/>
-        <activity android:name=".view.activity.MessageActivity"
-                  android:theme="@style/AppTheme"/>
-        <activity android:name=".view.activity.SurveyActivity"
-                  android:theme="@style/AppTheme"/>
-        <activity android:name=".view.activity.QuizActivity"
-                  android:theme="@style/AppTheme"/>
-        <activity android:name=".view.activity.HelpActivity"
-                  android:theme="@style/AppTheme"/>
-        <activity android:name=".view.activity.DetailGaleryActivity"
-                  android:theme="@style/AppTheme"/>
+        <activity
+                android:name=".view.activity.LoginActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".view.activity.RegisterActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".view.activity.MainActivity"
+                android:theme="@style/AppTheme2" />
+        <activity
+                android:name=".view.activity.QRActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".view.activity.ScheduleActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".view.activity.AboutActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".view.activity.DocumentActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".view.activity.FeedbackActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".view.activity.GaleryActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".view.activity.MapsActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".view.activity.SouvenirActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".view.activity.MessageActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".view.activity.SurveyActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".view.activity.QuizActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".view.activity.HelpActivity"
+                android:theme="@style/AppTheme" />
+        <activity
+                android:name=".view.activity.DetailGaleryActivity"
+                android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

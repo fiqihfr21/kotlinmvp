@@ -39,4 +39,8 @@ class APIRepositoryImplement(private val apiRepository: APIRepository): APIRepos
         return apiRepository.getEvent(auth)
     }
 
+    override fun getQuiz(auth: String): Flowable<Quiz> {
+        return apiRepository.getQuiz(auth)
+    }
+
 }
