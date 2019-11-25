@@ -1,9 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.activity.QuizQuestionActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.activity.QuizQuestionActivity"
+    android:padding="28dp">
 
-</android.support.constraint.ConstraintLayout>
+    <TextView
+            android:id="@+id/quiz_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ini activity question"
+            android:layout_centerInParent="true"
+            android:layout_alignParentBottom="true"/>
+
+    <TextView
+            android:id="@+id/question_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textColor="@color/yellow"
+            android:textSize="16sp"
+            />
+
+    <TextView
+            android:id="@+id/slash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/"
+            android:textColor="@color/yellow"
+            android:textSize="16sp"
+            android:layout_toRightOf="@id/question_number"
+            />
+
+    <TextView
+            android:id="@+id/question_total"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="10"
+            android:textColor="@color/yellow"
+            android:textSize="16sp"
+            android:layout_toRightOf="@id/slash"
+            />
+
+    <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Question"
+            android:textColor="@color/yellow"
+            android:textSize="16sp"
+            android:layout_marginLeft="4dp"
+            android:layout_toRightOf="@id/question_total"
+            />
+
+    <TextView
+            android:id="@+id/btn_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Skip"
+            android:textColor="@color/grey_medium"
+            android:textSize="16sp"
+            android:layout_alignParentRight="true"
+            />
+
+    <TextView
+            android:id="@+id/question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hewan apa yang tinggi banget warnanya kuning ada bercak bulet oren?"
+            android:layout_below="@id/slash"
+            android:layout_marginTop="20dp"
+            android:textSize="18sp"
+            android:textColor="@color/colorText"
+            android:layout_marginBottom="20dp"
+            />
+
+    <LinearLayout
+            android:id="@+id/layout_answer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/question"
+            >
+
+        <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list_answer"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+
+    </LinearLayout>
+
+    <com.akexorcist.roundcornerprogressbar.RoundCornerProgressBar
+            android:id="@+id/progress_bar"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            app:rcRadius="16dp"
+            app:rcProgressColor="@color/blue"
+            app:rcBackgroundColor="@color/blue_ashy"
+            android:layout_marginTop="32dp"
+            android:layout_below="@id/layout_answer"
+            android:layout_marginBottom="8dp"
+            app:rcProgress="150"
+            />
+
+    <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15s"
+            android:textSize="16sp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/progress_bar"
+            />
+</RelativeLayout>

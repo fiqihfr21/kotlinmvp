@@ -35,7 +35,11 @@ interface APIRepository{
     @GET("gateway/public/viewevent")
     fun getEvent(@Header("token")apptoken: String):Flowable<Event>
 
-    @GET ("product/public/quiz")
+    @GET ("product/public/viewquiz")
     fun getQuiz(@Header("token")apptoken: String):Flowable<Quiz>
+
+    @GET("product/public/question")
+    fun getQuestion(@Header("token")apptoken: String):Flowable<Quiz>
+
 
 }
